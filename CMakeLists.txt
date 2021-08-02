@@ -17,6 +17,7 @@ find_package(gazebo REQUIRED)
 find_package(gazebo_dev REQUIRED)
 find_package(gazebo_msgs REQUIRED)
 find_package(gazebo_ros REQUIRED)
+find_package(gazebo_ros_pkgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(cv_bridge REQUIRED)
@@ -40,6 +41,7 @@ set(dependencies
     gazebo_dev
     gazebo_msgs
     gazebo_ros
+    gazebo_ros_pkgs
     geometry_msgs
     image_transport
     cv_bridge
