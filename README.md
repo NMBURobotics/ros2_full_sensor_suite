@@ -74,15 +74,25 @@ Replace `botanbot` with you robot name and change the fileds in sensor_base_atta
 
 Launch the world file with; 
 
+> export GAZEBO_MODEL_PATH=/home/atas/colcon_ws/src/ros2_full_sensor_suite/models
 > ros2 launch ros2_full_sensor_suite test.launch.py
 
-Open RVIZ set the global frame to `base_link`. You can view various sensor data such as ; 
+replace the `GAZEBO_MODEL_PATH` according to your local path. This is important as otherwise Gazebo would not be able to locate the models.
+
+Open RVIZ2 in another terminal, set the global frame to `base_link`. You can view various incoming sensor data such as LIDAR, depth cloud, images etc.; 
 
 ![.](images/teaser.png)
 
+Note that since the depth camera pointcloud is coming from optical frmae, the cloud looks strange, 
+you will need to do transfrom e.g(depth_camera_optical_frame -> base_link) 
+so that the point cloud from depth camera will look more meaningful. 
 
-Note that some sensor data cannot be visualized through RVIZ but you can just subscribe to a topic to echo the data. 
+Some sensor data cannot be visualized through RVIZ2, but you can just subscribe to a topic to echo the data. 
 
 e.g 
 
 > ros2 topic echo /imu/data
+
+or the same from gps
+
+> ros2 topic echo /gps/fix
