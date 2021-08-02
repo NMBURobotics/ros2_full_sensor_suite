@@ -51,7 +51,7 @@ set(dependencies
  )
 
 # botanbot REALSENSE CAMERA GAZEBO PLUGIN SHARED LIBRARY
-add_library(gazebo_ros_realsense_plugin SHARED  src/RealSensePlugin.cpp
+add_library(gazebo_ros_realsense_plugin SHARED  src/gazebo_ros_realsense.cpp
                                             src/gazebo_ros_realsense.cpp)
 ament_target_dependencies(gazebo_ros_realsense_plugin ${dependencies})
 target_link_libraries(gazebo_ros_realsense_plugin ${GAZEBO_LIBRARIES})

@@ -27,8 +27,8 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
-#ifndef botanbot_GAZEBO__SENSOR_MODEL_HPP_
-#define botanbot_GAZEBO__SENSOR_MODEL_HPP_
+#ifndef ROS2_FULL_SENSOR_SUITE__SENSOR_MODEL_HPP_
+#define ROS2_FULL_SENSOR_SUITE__SENSOR_MODEL_HPP_
 
 #include <numeric>
 #include <string>
@@ -285,4 +285,4 @@ namespace gazebo
 
 }  // namespace gazebo
 
-#endif  // botanbot_GAZEBO__SENSOR_MODEL_HPP_
+#endif  // ROS2_FULL_SENSOR_SUITE__SENSOR_MODEL_HPP_

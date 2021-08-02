@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef botanbot_GAZEBO__GAZEBO_ROS_REALSENSE_HPP_
-#define botanbot_GAZEBO__GAZEBO_ROS_REALSENSE_HPP_
+#ifndef ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_HPP_
+#define ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_HPP_
 
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/camera_info.hpp>
@@ -26,7 +26,7 @@
 #include <memory>
 #include <string>
 
-#include "RealSensePlugin.hpp"
+#include "realsense_ros_plugin.hpp"
 
 namespace gazebo
 {
@@ -92,4 +92,4 @@ namespace gazebo
     sensor_msgs::msg::PointCloud2 pointcloud_msg_;
   };
 }  // namespace gazebo
-#endif  // botanbot_GAZEBO__GAZEBO_ROS_REALSENSE_HPP_
+#endif  // ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_HPP_

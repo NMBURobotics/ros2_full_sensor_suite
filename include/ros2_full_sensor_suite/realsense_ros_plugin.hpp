@@ -14,8 +14,8 @@
 // limitations under the License.
 */
 
-#ifndef botanbot_GAZEBO__REALSENSEPLUGIN_HPP_
-#define botanbot_GAZEBO__REALSENSEPLUGIN_HPP_
+#ifndef ROS2_FULL_SENSOR_SUITE__REALSENSE_ROS_PLUGIN_HPP_
+#define ROS2_FULL_SENSOR_SUITE__REALSENSE_ROS_PLUGIN_HPP_
 
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/common/common.hh>
@@ -143,4 +143,4 @@ namespace gazebo
     float rangeMaxDepth_;
   };
 }  // namespace gazebo
-#endif  // botanbot_GAZEBO__REALSENSEPLUGIN_HPP_
+#endif  // ROS2_FULL_SENSOR_SUITE__REALSENSE_ROS_PLUGIN_HPP_
