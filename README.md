@@ -1,23 +1,29 @@
 # ros2_full_sensor_suite
 
-THis project aims to provide easy integration for simulation of essential sensors for mobile robots. 
+This is a ROS2 package that aims to provide easy integration for simulation of essential sensors for mobile robots. 
 
 The sensor suite consists of following components; 
 
 | Sensor type | Topic Name(s) | Message Type | Update Rate |
 | :---: | :---: | :---: | :---: |
 | LIDAR | /velodyne_points | sensor_msgs::msg::PointCloud2 | 30 |
-| RealSense D435 COLOR CAMERA | /camera/color/image_raw | sensor_msgs::msg::Image | 30 |
-| RealSense D435 DEPTH CAMERA | /camera/aligned_depth_to_color/image_raw | sensor_msgs::msg::Image | 30 |
-| RealSense D435 IR1 CAMERA | /camera/infra1/image_raw | sensor_msgs::msg::Image | 1 |
-| RealSense D435 IR2 CAMERA | /camera/infra2/image_raw | sensor_msgs::msg::Image | 1 |
+| COLOR CAMERA | /camera/color/image_raw | sensor_msgs::msg::Image | 30 |
+| DEPTH CAMERA | /camera/aligned_depth_to_color/image_raw | sensor_msgs::msg::Image | 30 |
+| IR1 CAMERA | /camera/infra1/image_raw | sensor_msgs::msg::Image | 1 |
+| IR2 CAMERA | /camera/infra2/image_raw | sensor_msgs::msg::Image | 1 |
+| WIDE ANGLE CAMERA | /wide_angle_camera/image_raw | sensor_msgs::msg::Image | 1 |
 | GPS | /gps/fix | sensor_msgs::msg::NavSatFix | 30 |
 | IMU | /imu | sensor_msgs::msg::Imu | 30 |
 
-
 All this sensors are composed to one gazebo model named `full_sensor_suite`. Refer to models folder to find the related files. 
+There is also a Gazebo World plugin, which is used to attach the sensor suite model to any robot model.
+See the provided `test.world` for example usage.
 
-There is also a Gazebo World plugin, which is used to attach the sensor suite model to any robot model. See the provided `test.world` for example usage.
+Many of this sensor plugins are already available in official [gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs),
+However some sensors such as GPS and IMU were troublesome to get them work with [robot_localization](http://wiki.ros.org/robot_localization). 
+
+GPS and IMUs from [hector_gazebo](https://github.com/tu-darmstadt-ros-pkg/hector_gazebo) were ported to ROS2 to resolve the issues. 
+
 
 # Installation requirements
 
