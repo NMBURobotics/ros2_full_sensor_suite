@@ -52,28 +52,33 @@ set(dependencies
     std_srvs
  )
 
-# botanbot REALSENSE CAMERA GAZEBO PLUGIN SHARED LIBRARY
+#  REALSENSE CAMERA GAZEBO PLUGIN SHARED LIBRARY
 add_library(gazebo_ros_realsense_plugin SHARED  src/gazebo_ros_realsense.cpp
                                             src/gazebo_ros_realsense.cpp)
 ament_target_dependencies(gazebo_ros_realsense_plugin ${dependencies})
 target_link_libraries(gazebo_ros_realsense_plugin ${GAZEBO_LIBRARIES})
 
-# botanbot VELODYNE LIDAR GAZEBO PLUGIN SHARED LIBRARY
+#  VELODYNE LIDAR GAZEBO PLUGIN SHARED LIBRARY
 add_library(gazebo_ros_velodyne_laser SHARED src/gazebo_ros_velodyne_laser.cpp)
 ament_target_dependencies(gazebo_ros_velodyne_laser ${dependencies})
 
-# botanbot HECTOR GPS SENSOR GAZEBO PLUGIN SHARED LIBRARY
+#  HECTOR GPS SENSOR GAZEBO PLUGIN SHARED LIBRARY
 add_library(gazebo_ros_gps SHARED src/gazebo_ros_gps.cpp)
 ament_target_dependencies(gazebo_ros_gps ${dependencies})
 
-# botanbot HECTOR imu SENSOR GAZEBO PLUGIN SHARED LIBRARY
+#  HECTOR imu SENSOR GAZEBO PLUGIN SHARED LIBRARY
 add_library(gazebo_ros_imu SHARED src/gazebo_ros_imu.cpp)
 ament_target_dependencies(gazebo_ros_imu ${dependencies})
+
+# this world plugin is used to attach sensor suite model to given robot body name
+add_library(sensor_base_attacher_plugin SHARED src/sensor_base_attacher_plugin.cpp)
+ament_target_dependencies(sensor_base_attacher_plugin ${dependencies})
 
 ament_export_libraries(gazebo_ros_realsense_plugin 
                        gazebo_ros_velodyne_laser 
                        gazebo_ros_gps
-                       gazebo_ros_imu)
+                       gazebo_ros_imu
+                       sensor_base_attacher_plugin)
 ################################################################################
 # Install
 ################################################################################
@@ -82,11 +87,12 @@ install(TARGETS
         gazebo_ros_velodyne_laser
         gazebo_ros_gps
         gazebo_ros_imu
+        sensor_base_attacher_plugin
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
         RUNTIME DESTINATION bin)
 
-install(DIRECTORY launch models worlds
+install(DIRECTORY launch models worlds urdf
   DESTINATION share/${PROJECT_NAME}/
 )
 
