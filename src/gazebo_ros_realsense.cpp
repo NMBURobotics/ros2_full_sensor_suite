@@ -36,7 +36,6 @@ namespace gazebo
 
   GazeboRosRealsense::GazeboRosRealsense()
   {
-    std::cout << "CONSTRUCTED GAZEBO PLUGIN" << std::endl;
   }
 
   GazeboRosRealsense::~GazeboRosRealsense()
@@ -46,11 +45,10 @@ namespace gazebo
 
   void GazeboRosRealsense::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   {
-    this->node_ = rclcpp::Node::make_shared("GazeboRealsenseNode");
+    this->node_ = rclcpp::Node::make_shared("gazebo_ros_realsense_plugin_node");
 
     // Make sure the ROS node for Gazebo has already been initialized
     if (!rclcpp::ok()) {
-      std::cout << "ERROR : ROS IS NOT OK";
       RCLCPP_ERROR(
         node_->get_logger(),
         "A ROS node for Gazebo has not been initialized, unable "
@@ -61,13 +59,8 @@ namespace gazebo
       return;
     }
     RCLCPP_INFO(node_->get_logger(), "Realsense Gazebo ROS plugin loading.");
-    std::cout << "ROS IS OK LOADING REALSENSE PLUGIN" << std::endl;
-
 
     RealSensePlugin::Load(_model, _sdf);
-
-    std::cout << "LOADED REALSENSE PLUGIN" << std::endl;
-
 
     // initialize camera_info_manager
     this->camera_info_manager_.reset(
@@ -88,6 +81,8 @@ namespace gazebo
       this->pointcloud_pub_ = this->node_->create_publisher<sensor_msgs::msg::PointCloud2>(
         pointCloudTopic_, rclcpp::SystemDefaultsQoS());
     }
+
+    RCLCPP_INFO(node_->get_logger(), "Loaded . ");
   }
 
   void GazeboRosRealsense::OnNewFrame(

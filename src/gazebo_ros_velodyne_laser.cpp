@@ -244,7 +244,6 @@ namespace gazebo
 // Load the controller
   void GazeboRosVelodyneLaser::Load(sensors::SensorPtr _parent, sdf::ElementPtr _sdf)
   {
-    gzdbg << "Loading GazeboRosVelodyneLaser\n";
 
     // Initialize Gazebo node
     gazebo_node_ = gazebo::transport::NodePtr(new gazebo::transport::Node());
@@ -321,8 +320,7 @@ namespace gazebo
     //  ros subscribers present.
     sub_ = gazebo_node_->Subscribe(parent_sensor_->Topic(), &GazeboRosVelodyneLaser::OnScan, this);
 
-    RCLCPP_INFO(ros_node_->get_logger(), "Velodyne %slaser plugin ready");
-    gzdbg << "GazeboRosVelodyneLaser LOADED\n";
+    RCLCPP_INFO(ros_node_->get_logger(), "Velodyne laser plugin ready");
   }
 
   void GazeboRosVelodyneLaser::OnScan(ConstLaserScanStampedPtr & _msg)

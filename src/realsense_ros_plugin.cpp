@@ -48,11 +48,6 @@ RealSensePlugin::~RealSensePlugin() {}
 void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 {
   // Output the name of the model
-  std::cout <<
-    std::endl <<
-    "RealSensePlugin: The realsense_camera plugin is attach to model " <<
-    _model->GetName() << std::endl;
-
   _sdf = _sdf->GetFirstElement();
 
   cameraParamsMap_.insert(std::make_pair(COLOR_CAMERA_NAME, CameraParams()));
@@ -60,7 +55,6 @@ void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   cameraParamsMap_.insert(std::make_pair(IRED1_CAMERA_NAME, CameraParams()));
   cameraParamsMap_.insert(std::make_pair(IRED2_CAMERA_NAME, CameraParams()));
 
-  std::cout << "RealSensePlugin: inserted name of cameras " << std::endl;
 
   do {
     std::string name = _sdf->GetName();
@@ -129,7 +123,6 @@ void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     _sdf = _sdf->GetNextElement();
   } while (_sdf);
 
-  std::cout << "RealSensePlugin: got the options provided in xml " << std::endl;
 
   // Store a pointer to the this model
   this->rsModel = _model;
@@ -156,7 +149,6 @@ void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     smanager->GetSensor(prefix + DEPTH_CAMERA_NAME))
     ->DepthCamera();
 
-  std::cout << "RealSensePlugin: setted up Cameras Renderers" << std::endl;
 
   // Check if camera renderers have been found successfuly
   if (!this->depthCam) {
@@ -180,7 +172,6 @@ void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     return;
   }
 
-  std::cout << "RealSensePlugin: made sure Cameras Renderers are up" << std::endl;
 
   // Resize Depth Map dimensions
   try {
@@ -229,7 +220,6 @@ void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   this->updateConnection = event::Events::ConnectWorldUpdateBegin(
     boost::bind(&RealSensePlugin::OnUpdate, this));
 
-  std::cout << "RealSensePlugin: constructed" << std::endl;
 }
 
 /////////////////////////////////////////////////
