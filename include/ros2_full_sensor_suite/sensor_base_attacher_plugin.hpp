@@ -38,6 +38,7 @@ namespace gazebo
     ~SensorBaseAttacherPlugin();
 
     void Load(gazebo::physics::WorldPtr _parent, sdf::ElementPtr _sdf);
+    void Attach();
 
   private:
     void Update();

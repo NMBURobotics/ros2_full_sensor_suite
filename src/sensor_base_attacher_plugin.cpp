@@ -79,12 +79,19 @@ namespace gazebo
       ros_node_->get_logger(), "sensor_suite_base_link_name is set to %s",
       sensor_suite_base_link_name_.c_str());
 
+    Attach();
+
     // Hook into simulation update loop
-    update_connection_ = gazebo::event::Events::ConnectWorldUpdateBegin(
-      std::bind(&SensorBaseAttacherPlugin::Update, this));
+    /*update_connection_ = gazebo::event::Events::ConnectWorldUpdateBegin(
+      std::bind(&SensorBaseAttacherPlugin::Update, this));*/
   }
 
   void SensorBaseAttacherPlugin::Update()
+  {
+    RCLCPP_ERROR(ros_node_->get_logger(), "SensorBaseAttacherPlugin::Update Not Implemented");
+  }
+
+  void SensorBaseAttacherPlugin::Attach()
   {
 
     fixedJoint j;
@@ -93,24 +100,33 @@ namespace gazebo
     j.model2 = sensor_suite_model_name_;
     j.link2 = sensor_suite_base_link_name_;
 
-    gazebo::physics::BasePtr b1 = world_->ModelByName(robot_model_name_);
-    if (b1 == NULL) {
-      RCLCPP_ERROR(ros_node_->get_logger(), "%s model was not found", robot_model_name_.c_str());
-      return;
-    }
+    gazebo::physics::BasePtr b1 = NULL;
+    gazebo::physics::BasePtr b2 = NULL;
 
-    gazebo::physics::BasePtr b2 = world_->ModelByName(sensor_suite_model_name_);
-    if (b2 == NULL) {
-      RCLCPP_ERROR(
-        ros_node_->get_logger(), "%s model was not found", sensor_suite_model_name_.c_str());
-      return;
+    while (!b1 || !b2) {
+      b1 = world_->ModelByName(robot_model_name_);
+      b2 = world_->ModelByName(sensor_suite_model_name_);
+
+      if (b1 == NULL) {
+        RCLCPP_ERROR(ros_node_->get_logger(), "%s model was not found", robot_model_name_.c_str());
+        RCLCPP_ERROR(ros_node_->get_logger(), "Waiting and trying again");
+
+      }
+
+      if (b2 == NULL) {
+        RCLCPP_ERROR(
+          ros_node_->get_logger(), "%s model was not found", sensor_suite_model_name_.c_str());
+        RCLCPP_ERROR(ros_node_->get_logger(), "Waiting and trying again");
+      }
+      std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
     }
+    RCLCPP_INFO(ros_node_->get_logger(), "Found given model names, proceeding to attach them");
 
     gazebo::physics::ModelPtr m1(dynamic_cast<gazebo::physics::Model *>(b1.get()));
     j.m1 = m1;
     gazebo::physics::ModelPtr m2(dynamic_cast<gazebo::physics::Model *>(b2.get()));
     j.m2 = m2;
-
 
     gazebo::physics::LinkPtr l1 = m1->GetLink(robot_base_link_name_);
     if (l1 == NULL) {
@@ -134,6 +150,9 @@ namespace gazebo
     j.joint->Load(l1, l2, ignition::math::Pose3d());
     j.joint->SetModel(m2);
     j.joint->Init();
+    RCLCPP_INFO(
+      ros_node_->get_logger(), "Attached %s to %s",
+      sensor_suite_model_name_.c_str(), robot_model_name_.c_str());
   }
 }  // namespace gazebo
 GZ_REGISTER_WORLD_PLUGIN(gazebo::SensorBaseAttacherPlugin)
