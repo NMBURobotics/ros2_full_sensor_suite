@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "ros2_full_sensor_suite/gazebo_ros_realsense.hpp"
+#include "ros2_full_sensor_suite/gazebo_ros_realsense_camera.hpp"
 #include <sensor_msgs/fill_image.hpp>
 #include <sensor_msgs/point_cloud2_iterator.hpp>
 
@@ -32,18 +32,18 @@ namespace
 namespace gazebo
 {
 // Register the plugin
-  GZ_REGISTER_MODEL_PLUGIN(GazeboRosRealsense)
+  GZ_REGISTER_MODEL_PLUGIN(GazeboRosRealsenseCamera)
 
-  GazeboRosRealsense::GazeboRosRealsense()
+  GazeboRosRealsenseCamera::GazeboRosRealsenseCamera()
   {
   }
 
-  GazeboRosRealsense::~GazeboRosRealsense()
+  GazeboRosRealsenseCamera::~GazeboRosRealsenseCamera()
   {
     RCLCPP_DEBUG_STREAM(this->node_->get_logger(), "realsense_camera Unloaded");
   }
 
-  void GazeboRosRealsense::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
+  void GazeboRosRealsenseCamera::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   {
     this->node_ = rclcpp::Node::make_shared("gazebo_ros_realsense_plugin_node");
 
@@ -85,7 +85,7 @@ namespace gazebo
     RCLCPP_INFO(node_->get_logger(), "Loaded . ");
   }
 
-  void GazeboRosRealsense::OnNewFrame(
+  void GazeboRosRealsenseCamera::OnNewFrame(
     const rendering::CameraPtr cam,
     const transport::PublisherPtr pub)
   {
@@ -135,7 +135,7 @@ namespace gazebo
 // Referenced from gazebo_plugins
 // https://github.com/ros-simulation/gazebo_ros_pkgs/blob/kinetic-devel/gazebo_plugins/src/gazebo_ros_openni_kinect.cpp#L302
 // Fill depth information
-  bool GazeboRosRealsense::FillPointCloudHelper(
+  bool GazeboRosRealsenseCamera::FillPointCloudHelper(
     sensor_msgs::msg::PointCloud2 & point_cloud_msg,
     uint32_t rows_arg, uint32_t cols_arg,
     uint32_t step_arg, void * data_arg)
@@ -218,7 +218,7 @@ namespace gazebo
     return true;
   }
 
-  void GazeboRosRealsense::OnNewDepthFrame()
+  void GazeboRosRealsenseCamera::OnNewDepthFrame()
   {
     // get current time
     common::Time current_time = this->world->SimTime();

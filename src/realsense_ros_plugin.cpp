@@ -20,7 +20,7 @@
 #include <utility>
 #include <string>
 
-#include "ros2_full_sensor_suite/RealSensePlugin.hpp"
+#include "ros2_full_sensor_suite/realsense_ros_plugin.hpp"
 
 #define DEPTH_SCALE_M 0.001
 #define DEPTH_CAMERA_TOPIC "depth"

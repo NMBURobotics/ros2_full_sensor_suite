@@ -53,10 +53,10 @@ set(dependencies
  )
 
 #  REALSENSE CAMERA GAZEBO PLUGIN SHARED LIBRARY
-add_library(gazebo_ros_realsense_plugin SHARED  src/gazebo_ros_realsense.cpp
-                                            src/gazebo_ros_realsense.cpp)
-ament_target_dependencies(gazebo_ros_realsense_plugin ${dependencies})
-target_link_libraries(gazebo_ros_realsense_plugin ${GAZEBO_LIBRARIES})
+add_library(gazebo_ros_realsense_camera_plugin SHARED  src/gazebo_ros_realsense_camera.cpp
+                                            src/realsense_ros_plugin.cpp)
+ament_target_dependencies(gazebo_ros_realsense_camera_plugin ${dependencies})
+target_link_libraries(gazebo_ros_realsense_camera_plugin ${GAZEBO_LIBRARIES})
 
 #  VELODYNE LIDAR GAZEBO PLUGIN SHARED LIBRARY
 add_library(gazebo_ros_velodyne_laser SHARED src/gazebo_ros_velodyne_laser.cpp)
@@ -74,7 +74,7 @@ ament_target_dependencies(gazebo_ros_imu ${dependencies})
 add_library(sensor_base_attacher_plugin SHARED src/sensor_base_attacher_plugin.cpp)
 ament_target_dependencies(sensor_base_attacher_plugin ${dependencies})
 
-ament_export_libraries(gazebo_ros_realsense_plugin 
+ament_export_libraries(gazebo_ros_realsense_camera_plugin 
                        gazebo_ros_velodyne_laser 
                        gazebo_ros_gps
                        gazebo_ros_imu
@@ -83,7 +83,7 @@ ament_export_libraries(gazebo_ros_realsense_plugin
 # Install
 ################################################################################
 install(TARGETS 
-        gazebo_ros_realsense_plugin
+        gazebo_ros_realsense_camera_plugin
         gazebo_ros_velodyne_laser
         gazebo_ros_gps
         gazebo_ros_imu

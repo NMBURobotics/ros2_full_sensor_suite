@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_HPP_
-#define ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_HPP_
+#ifndef ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_CAMERA_HPP_
+#define ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_CAMERA_HPP_
 
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/camera_info.hpp>
@@ -31,17 +31,17 @@
 namespace gazebo
 {
 /// \brief A plugin that simulates Real Sense camera streams.
-  class GazeboRosRealsense : public RealSensePlugin
+  class GazeboRosRealsenseCamera : public RealSensePlugin
   {
     /// \brief Constructor.
 
   public:
-    GazeboRosRealsense();
+    GazeboRosRealsenseCamera();
 
     /// \brief Destructor.
 
   public:
-    ~GazeboRosRealsense();
+    ~GazeboRosRealsenseCamera();
 
     // Documentation Inherited.
 
@@ -92,4 +92,4 @@ namespace gazebo
     sensor_msgs::msg::PointCloud2 pointcloud_msg_;
   };
 }  // namespace gazebo
-#endif  // ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_HPP_
+#endif  // ROS2_FULL_SENSOR_SUITE__GAZEBO_ROS_REALSENSE_CAMERA_HPP_
