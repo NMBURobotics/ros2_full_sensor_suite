@@ -79,7 +79,8 @@ namespace gazebo
       ros_node_->get_logger(), "sensor_suite_base_link_name is set to %s",
       sensor_suite_base_link_name_.c_str());
 
-    Attach();
+    std::thread t(&SensorBaseAttacherPlugin::Attach, this);
+    t.detach();
 
     // Hook into simulation update loop
     /*update_connection_ = gazebo::event::Events::ConnectWorldUpdateBegin(
