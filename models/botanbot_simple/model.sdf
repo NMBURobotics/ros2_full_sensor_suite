@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.7'>
-    <model name='botanbot'>
+    <model name='botanbot_simple'>
         <!-- BEGIN LINKS RELATED TO ROBOT BODY-->
         <link name='base_link'>
             <pose>0 0 0 0 0 0</pose>
@@ -22,15 +22,15 @@
                 <pose>-0.019375 0.005287 0.340756 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/base.stl</uri>
+                        <uri>model://botanbot_simple/meshes/base.stl</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>
                 <material>
                     <script>
-                        <uri>model://botanbot/materials/scripts</uri>
-                        <uri>model://botanbot/materials/textures</uri>
-                        <name>botanbot/fur</name>
+                        <uri>model://botanbot_simple/materials/scripts</uri>
+                        <uri>model://botanbot_simple/materials/textures</uri>
+                        <name>botanbot_simple/fur</name>
                     </script>
                     <shader type='pixel' />
                     <emissive>0 0 0 1</emissive>
@@ -40,7 +40,7 @@
                 <pose>-0.019375 0.005287 0.340756 0 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/base.stl</uri>
+                        <uri>model://botanbot_simple/meshes/base.stl</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>
@@ -63,7 +63,7 @@
                 <pose>0 0 0 1.57 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/wheel.stl</uri>
+                        <uri>model://botanbot_simple/meshes/wheel.stl</uri>
                         <scale>0.5 0.5 1</scale>
                     </mesh>
                 </geometry>
@@ -117,7 +117,7 @@
                 <pose>0 0 0 0 -0 1.5706</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/wheel.stl</uri>
+                        <uri>model://botanbot_simple/meshes/wheel.stl</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>
@@ -166,7 +166,7 @@
                 <pose>0 0 0 0 -0 1.5706</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/wheel.stl</uri>
+                        <uri>model://botanbot_simple/meshes/wheel.stl</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>
@@ -215,7 +215,7 @@
                 <pose>0 0 0 0 -0 1.5706</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/wheel.stl</uri>
+                        <uri>model://botanbot_simple/meshes/wheel.stl</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>
@@ -266,7 +266,7 @@
                 <pose>0 0 0 0 -0 1.5706</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://botanbot/meshes/wheel.stl</uri>
+                        <uri>model://botanbot_simple/meshes/wheel.stl</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>
@@ -433,7 +433,7 @@
         </joint>
         <!-- END JOINTS RELATED TO ROBOT BODY   -->
         <!-- ////////////////////////////////   -->
-        <plugin name="botanbot_joint_states" filename="libgazebo_ros_joint_state_publisher.so">
+        <plugin name="botanbot_simple_joint_states" filename="libgazebo_ros_joint_state_publisher.so">
             <ros>
                 <argument>--ros-args --remap ~/out:=joint_states</argument>
             </ros>
