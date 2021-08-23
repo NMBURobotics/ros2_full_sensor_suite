@@ -36,8 +36,8 @@ static const double flattening = 1.0 / 298.257223563;
 static const double excentrity2 = 2 * flattening - flattening * flattening;
 
 // default reference position
-static const double DEFAULT_REFERENCE_LATITUDE = 49.9;
-static const double DEFAULT_REFERENCE_LONGITUDE = 8.9;
+static const double DEFAULT_REFERENCE_LATITUDE = 59.664230;
+static const double DEFAULT_REFERENCE_LONGITUDE = 10.762824;
 static const double DEFAULT_REFERENCE_HEADING = 0.0;
 static const double DEFAULT_REFERENCE_ALTITUDE = 0.0;
 
