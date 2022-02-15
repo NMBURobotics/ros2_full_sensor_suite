@@ -55,6 +55,13 @@ namespace gazebo
         _sdf->GetElement("sensor_suite_base_link_name")->GetValue()->GetAsString();
     }
 
+    if (_sdf->HasElement("pose")) {
+      pose_ = _sdf->Get<ignition::math::Pose3d>("pose");
+    } else {
+      RCLCPP_INFO(ros_node_->get_logger(), "  plugin missing <pose>, defaults to 0s");
+      pose_ = ignition::math::Pose3d(0, 0, 0, 0, 0, 0);
+    }
+
     if (robot_model_name_.empty() || sensor_suite_model_name_.empty()) {
       RCLCPP_ERROR(
         ros_node_->get_logger(),
@@ -148,12 +155,14 @@ namespace gazebo
     // Attch sensor suit base link to robot models base link
     j.joint = physics_->CreateJoint("fixed", m1);
     j.joint->Attach(l1, l2);
-    j.joint->Load(l1, l2, ignition::math::Pose3d());
+    j.joint->Load(l1, l2, pose_);
     j.joint->SetModel(m2);
     j.joint->Init();
     RCLCPP_INFO(
       ros_node_->get_logger(), "Attached %s to %s",
       sensor_suite_model_name_.c_str(), robot_model_name_.c_str());
+    RCLCPP_INFO(
+      ros_node_->get_logger(), "Attached %s ", pose_);
   }
 }  // namespace gazebo
 GZ_REGISTER_WORLD_PLUGIN(gazebo::SensorBaseAttacherPlugin)
