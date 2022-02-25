@@ -53,6 +53,8 @@ namespace gazebo
     std::string sensor_suite_model_name_;
     std::string sensor_suite_base_link_name_;
 
+    ignition::math::Pose3d pose_;
+
     struct fixedJoint
     {
       std::string model1;
