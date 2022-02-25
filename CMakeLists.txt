@@ -26,6 +26,15 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+
+find_package(ignition-common3 QUIET COMPONENTS profiler)
+if(ignition-common3_FOUND)
+  add_definitions("-DIGN_PROFILER_ENABLE=1" "-DIGN_PROFILER_REMOTERY=1")
+  message(STATUS "Profiler is active")
+else()
+  message(WARNING "Can't find Ignition common3. Profiler will not be actived")
+  add_definitions("-DIGN_PROFILER_ENABLE=0" "-DIGN_PROFILER_REMOTERY=0")
+endif()
  
 ################################################################################
 # Build

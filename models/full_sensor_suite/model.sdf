@@ -232,7 +232,7 @@
                 <mass>0.035</mass>
             </inertial>
         </link>
-        <link name="velodyne_link">
+        <link name="lidar_data">
             <pose>0 0 0.9 0 0 0</pose>
             <collision name="collision">
                 <pose>0 0 0 1.57 0 0</pose>
@@ -291,8 +291,8 @@
                     </noise>
                 </ray>
                 <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
-                    <topicName>/velodyne_points</topicName>
-                    <frameName>velodyne_link</frameName>
+                    <topicName>/ouster/points</topicName>
+                    <frameName>lidar_data_link</frameName>
                     <min_range>1.0</min_range>
                     <max_range>20.0</max_range>
                     <gaussianNoise>0.008</gaussianNoise>
@@ -350,7 +350,7 @@
         </joint>
         <joint name="velodyne_joint" type="fixed">
             <parent>base_sensor_link</parent>
-            <child>velodyne_link</child>
+            <child>lidar_data</child>
             <pose>0 0 0 0 0 0</pose>
         </joint>
         <joint name="imu_joint" type="fixed">
@@ -389,8 +389,8 @@
             <updateRate>30.0</updateRate>
             <bodyName>gps_link</bodyName>
             <frameId>gps_link</frameId>
-            <topicName>gps/fix</topicName>
-            <velocityTopicName>gps/fix_vel</velocityTopicName>
+            <topicName>fix</topicName>
+            <velocityTopicName>fix_vel</velocityTopicName>
             <drift>0.0 0.0 0.0</drift>
             <gaussianNoise>0.0 0.0 0.0</gaussianNoise>
             <velocityDrift>0 0 0</velocityDrift>
