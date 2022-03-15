@@ -232,7 +232,7 @@
                 <mass>0.035</mass>
             </inertial>
         </link>
-        <link name="lidar_data">
+        <link name="lidar_data_link">
             <pose>0 0 0.9 0 0 0</pose>
             <collision name="collision">
                 <pose>0 0 0 1.57 0 0</pose>
@@ -350,7 +350,7 @@
         </joint>
         <joint name="velodyne_joint" type="fixed">
             <parent>base_sensor_link</parent>
-            <child>lidar_data</child>
+            <child>lidar_data_link</child>
             <pose>0 0 0 0 0 0</pose>
         </joint>
         <joint name="imu_joint" type="fixed">
@@ -401,7 +401,7 @@
             <updateRate>30.0</updateRate>
             <frameId>imu_link</frameId>
             <bodyName>imu_link</bodyName>
-            <topicName>imu/data</topicName>
+            <topicName>imu/absolute</topicName>
             <gaussianNoise>0.0 0.0 0.0</gaussianNoise>
             <xyzOffset>0.0 0.0 0.0</xyzOffset>
             <rpyOffset>0.0 0.0 0.0</rpyOffset>
